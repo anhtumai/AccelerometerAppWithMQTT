@@ -1,0 +1,119 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      MQTT Connection
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="6" offset="3">
+        <ion-card>
+          <ion-card-header>
+            Influx DBS
+          </ion-card-header>
+          <ion-card-header>
+            <div>
+              Default IPv4 address for MQTT broker is 13.49.46.146 with port
+              9001
+            </div>
+          </ion-card-header>
+          <ion-item>
+            <ion-label position="floating">Remote Address</ion-label>
+            <ion-input
+              type="text"
+              [(ngModel)]="mqtt_url"
+              placeholder="13.49.46.146"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Port</ion-label>
+            <ion-input
+              type="number"
+              [(ngModel)]="mqtt_port"
+              placeholder="9001"
+            ></ion-input>
+          </ion-item>
+          <div margin-vertical>
+            <ion-button
+              id="btn-url-confirm"
+              type="submit"
+              (click)="connectMQTTBroker()"
+              ><ion-icon slot="start" name="add"></ion-icon>Connect</ion-button
+            >
+            <ion-button
+              fill="outline"
+              color="danger"
+              id="btn-url-cancel"
+              type="submit"
+              (click)="disconnectMQTTBroker()"
+              ><ion-icon slot="start" name="close"></ion-icon
+              >Disconnect</ion-button
+            >
+          </div>
+
+          <div margin-vertical>
+            <div>
+              Connection status: {{mqttBrokerConnectFlag}} {{connectedMQTTUrl}}
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col> </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="6" offset="3">
+        <form>
+          <ion-card>
+            <ion-card-header>
+              Data
+              <ion-item>Listening: {{listeningFlag}}</ion-item>
+            </ion-card-header>
+            <ion-item>
+              <div>X: {{x}}</div>
+            </ion-item>
+            <ion-item>
+              <div>Y: {{y}}</div>
+            </ion-item>
+            <ion-item>
+              <div>Z: {{z}}</div>
+            </ion-item>
+            <div margin-vertical>
+              <ion-button type="submit" (click)="startListening()"
+                ><ion-icon slot="start" name="add"></ion-icon>Start
+                Listening</ion-button
+              >
+              <ion-button
+                fill="outline"
+                color="danger"
+                type="reset"
+                (click)="stopListening()"
+                ><ion-icon slot="start" name="close"></ion-icon>Stop
+                Listening</ion-button
+              >
+              <ion-item>
+                <ion-label>Send Data</ion-label>
+                <ion-checkbox
+                  slot="end"
+                  color="primary"
+                  (ionChange)="enableSending($event)"
+                >
+                </ion-checkbox>
+              </ion-item>
+            </div>
+          </ion-card>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col> </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
