@@ -59,9 +59,9 @@ $> sudo nohup influxd &> /var/log/influxd/influxd.log &
 To view log file output:
 
 ```
-$> sudo tail -f /var/log/telegraf/telegraf.conf
+$> sudo tail -f /var/log/telegraf/telegraf.log
 
-$> sudo tail -f /var/log/mosquitto/mosquitto.conf
+$> sudo tail -f /var/log/mosquitto/mosquitto.log
 
-$> sudo tail -f /var/log/influxd/influxd.conf
+$> sudo tail -f /var/log/influxd/influxd.log
 ```
