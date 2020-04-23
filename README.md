@@ -44,16 +44,47 @@ Password: password
 
 ### Set up telegraf and mosquitto
 
+Output format from Ionic app:
+```
+{
+    "x": float,
+    "y": float,
+    "z": float,
+    "timestamp": int
+}
+```
+
 telegraf.conf: https://gist.github.com/anhtumai/b6d19b499a69c495d1a5e12f4f138899
 
+```
+[[inputs.mqtt_consumer]]
+  servers = ["ws://localhost:9001"]
+  qos = 0
+
+ topics = [
+    "telegraf/#"
+  ]
+
+  connection_timeout = "30s"
+
+  persistent_session = false
+  client_id = "Telegraf"
+  data_format = "json"
+  json_strict = true
+
+```
+
 etc/mosquitto/mosquitto.conf: https://gist.github.com/anhtumai/8d50e4e8f69e839b7d83d4ce5c770be2
+
+
+To start services:
 
 ```
 $> sudo systemctl start mosquitto
 
 $> sudo nohup telegraf --config telegraf.conf --debug &> /var/log/telegraf/telegraf.log  &
 
-$> sudo nohup influxd &> /var/log/influxd/influxd.log &
+$> nohup influxd &> /var/log/influxd/influxd.log &
 ```
 
 To view log file output:
