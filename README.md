@@ -18,7 +18,7 @@ App overview:
 
 InfluxDB output on AWS EC2 overview:
 
-[![ezgif.com-video-to-gif4c0e11766da1fb1e.gif](https://s4.gifyu.com/images/ezgif.com-video-to-gif4c0e11766da1fb1e.gif)](https://gifyu.com/image/lW5l)
+[![new8b06026308c924f5.gif](https://s4.gifyu.com/images/new8b06026308c924f5.gif)](https://gifyu.com/image/lin8)
 
 ## Installation
 
@@ -30,7 +30,7 @@ $> ionic cordova run android
 ```
 
 After running the app, to view its output on the cloud, go to:
-http://13.49.46.146:9999/orgs/059422d5f47f8000/dashboards/059422f833dba000?lower=now%28%29%20-%201h
+http://13.49.46.146:9999/orgs/058f3794a3113000/dashboards/058f3799d9c73000?lower=now%28%29%20-%201h
 
 Username: username
 
