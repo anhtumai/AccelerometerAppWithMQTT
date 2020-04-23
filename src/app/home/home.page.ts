@@ -34,13 +34,6 @@ export class HomePage {
   listeningFlag: boolean;
   sendingMQTTFlag: boolean;
 
-  // topics: string[] = [
-  //   "telegraf/x",
-  //   "telegraf/y",
-  //   "telegraf/z",
-  //   "telegraf/timestamp",
-  // ];
-
   client: MQTT.Client;
 
   constructor() {
@@ -123,11 +116,6 @@ export class HomePage {
     message.destinationName = "telegraf/t";
     this.client.send(message);
 
-    //Test section 
-    // let test_message = new MQTT.Message("1");
-    // test_message.destinationName = "telegraf/x";
-    // this.client.send(test_message);
-    // console.log(test_message);
   }
 
   async startListening() {
