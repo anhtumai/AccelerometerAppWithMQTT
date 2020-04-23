@@ -20,7 +20,7 @@ export class HomePage {
   x: string;
   y: string;
   z: string;
-  timestamp: number;
+  timestamp: any;
   gra_x: number;
   gra_y: number;
   gra_z: number;
@@ -34,12 +34,12 @@ export class HomePage {
   listeningFlag: boolean;
   sendingMQTTFlag: boolean;
 
-  topics: string[] = [
-    "telegraf/x",
-    "telegraf/y",
-    "telegraf/z",
-    "telegraf/timestamp",
-  ];
+  // topics: string[] = [
+  //   "telegraf/x",
+  //   "telegraf/y",
+  //   "telegraf/z",
+  //   "telegraf/timestamp",
+  // ];
 
   client: MQTT.Client;
 
@@ -113,15 +113,21 @@ export class HomePage {
   }
 
   sendMessage() {
-    console.log("Connected", this.mqttBrokerConnectFlag);
+    const value = JSON.stringify({
+      "x": parseFloat(this.x),
+      "y": parseFloat(this.y),
+      "z": parseFloat(this.z),
+      "timestamp": parseInt(this.timestamp)
+    });
+    let message = new MQTT.Message(value);
+    message.destinationName = "telegraf/t";
+    this.client.send(message);
 
-    let values: string[] = [this.x, this.y, this.z, this.timestamp.toString()];
-
-    for (let i = 0; i < 3; i++) {
-      let message = new MQTT.Message(values[i]);
-      message.destinationName = this.topics[i];
-      this.client.send(message);
-    }
+    //Test section 
+    // let test_message = new MQTT.Message("1");
+    // test_message.destinationName = "telegraf/x";
+    // this.client.send(test_message);
+    // console.log(test_message);
   }
 
   async startListening() {
