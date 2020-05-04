@@ -100,7 +100,7 @@ $> sudo tail -f /var/log/influxd/influxd.log
 
 ### Security 
 
-Use SSL over Websocker protocol to secure data transmission.
+Use SSL over Websocket protocol to secure data transmission.
 
 1. Use OpenSSL to set up mosquitto broker 
 
