@@ -59,7 +59,7 @@ export class HomePage {
   connectToMQTTBroker(hostname: string, port: number, id: string) {
     let options = {
       timeout: 60,
-      useSSL: false,
+      useSSL: true,
       onSuccess: this.onConnect.bind(this),
       onFailure: this.onFailure.bind(this),
     };
@@ -80,7 +80,7 @@ export class HomePage {
   onConnect() {
     console.log("onConnect");
     this.mqttBrokerConnectFlag = true;
-    this.connectedMQTTUrl = this.mqtt_url + ":" + this.mqtt_port;
+    this.connectedMQTTUrl = "wss://" + this.mqtt_url + ":" + this.mqtt_port;
 
     console.log(this.client);
     console.log(this.mqttBrokerConnectFlag);
